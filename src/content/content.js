@@ -15,7 +15,7 @@ export const profile = {
   intro:
     "I build and deploy ML, deep learning, NLP and computer vision solutions, from data pipelines and models to LLM-powered agents and production APIs.",
   // Drop a photo into /public (e.g. public/regvin.jpg) and set photo: `${BASE}regvin.jpg`
-  photo: `${BASE}regvin.jpg`,
+  photo: `${BASE}regvin.png`,
   interests: ["AI", "ML", "Data Science", "Design", "Photography", "Sports"],
   languages: ["English", "Malayalam", "Hindi"],
 };
