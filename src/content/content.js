@@ -18,7 +18,8 @@ export const profile = {
   handle: "regvin_vinod_kumar",
   // Put your photo at public/photo.jpg (portrait works best). If the file is missing the
   // site shows your initials instead. Change the file name here to use a different one.
-  photo: `${BASE}regvin.png`,
+  photos: [`${BASE}regvin.png`, `${BASE}regvin1.png`, `${BASE}regvin2.png`],
+  photoTiming: {holdMs: 4000, fadeMs: 1000},
   interests: ["AI", "ML", "Data Science", "Design", "Photography", "Sports"],
   languages: ["English", "Malayalam", "Hindi"],
 };
