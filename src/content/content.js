@@ -24,7 +24,7 @@ export const contact = {
   phone: "+91 8078851881",
   email: "regvinvk@gmail.com",
   // Add your LinkedIn profile URL here. The button is hidden while this is empty.
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/regvin-vinod-kumar-rvk0039",
 };
 
 export const resume = {
@@ -67,6 +67,14 @@ export const experience = {
       company: "Echelon Marketing House",
       location: "",
       period: "Jan 2026 – Mar 2026",
+      type: "Freelance",
+      highlights: [],
+    },
+    {
+      role: "Social Media & IT Operations",
+      company: "Royal Football Club Kerala",
+      location: "",
+      period: "Jan 2026 – Aug 2026",
       type: "Freelance",
       highlights: [],
     },
