@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { profile, projects, resume, terminal } from "../content/content";
 import { barSx, cardSx, fadeSx } from "./Section";
@@ -25,10 +25,24 @@ function downloadResume() {
 }
 
 function Photo() {
-  const [failed, setFailed] = useState(!profile.photo);
+  const { photos, photoTiming } = profile;
+  const [failed, setFailed] = useState([]);
+  const [tick, setTick] = useState(0);
+  const list = photos.filter((p) => !failed.includes(p));
+  const fade = photoTiming.fadeMs;
+  const period = photoTiming.holdMs + fade;
+
+  // Move to the next photo every (hold + fade) ms, so each one is fully visible
+  // for `holdMs` and then blends into the next over `fadeMs`.
+  useEffect(() => {
+    if (list.length < 2) return undefined;
+    const t = setInterval(() => setTick((n) => n + 1), period);
+    return () => clearInterval(t);
+  }, [list.length, period]);
+
   const box = { width: "100%", height: { xs: 300, md: 330 }, borderRadius: "6px", overflow: "hidden" };
 
-  if (failed) {
+  if (list.length === 0) {
     return (
       <Box
         sx={{
@@ -42,14 +56,39 @@ function Photo() {
       </Box>
     );
   }
+
+  const current = list[tick % list.length];
   return (
-    <Box
-      component="img"
-      src={profile.photo}
-      alt={profile.name}
-      onError={() => setFailed(true)}
-      sx={{ ...box, display: "block", objectFit: "cover", objectPosition: "center top" }}
-    />
+    <Box sx={{ ...box, position: "relative", bgcolor: "#0b1019" }}>
+      {list.map((src) => {
+        const isCurrent = src === current;
+        return (
+          <Box
+            key={src}
+            component="img"
+            src={src}
+            alt={isCurrent ? profile.name : ""}
+            aria-hidden={!isCurrent}
+            draggable={false}
+            onError={() => setFailed((f) => [...f, src])}
+            sx={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center top",
+              // The incoming photo fades in on top. The outgoing one stays fully visible
+              // underneath until the fade ends, then drops to 0, so there is no dip.
+              opacity: isCurrent ? 1 : 0,
+              zIndex: isCurrent ? 2 : 0,
+              transition: isCurrent ? `opacity ${fade}ms ease-in-out` : `opacity 0s linear ${fade}ms`,
+              "@media (prefers-reduced-motion: reduce)": { transition: "none" },
+            }}
+          />
+        );
+      })}
+    </Box>
   );
 }
 
