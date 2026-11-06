@@ -18,7 +18,7 @@ export const profile = {
   handle: "regvin_vinod_kumar",
   // Put your photo at public/photo.jpg (portrait works best). If the file is missing the
   // site shows your initials instead. Change the file name here to use a different one.
-  photo: `${BASE}photo.jpg`,
+  photo: `${BASE}regvin.png`,
   interests: ["AI", "ML", "Data Science", "Design", "Photography", "Sports"],
   languages: ["English", "Malayalam", "Hindi"],
 };
@@ -27,7 +27,7 @@ export const contact = {
   phone: "+91 8078851881",
   email: "regvinvk@gmail.com",
   // Add your LinkedIn profile URL here. The button is hidden while this is empty.
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/regvin-vinod-kumar-rvk0039",
 };
 
 export const resume = {
@@ -88,6 +88,14 @@ export const experience = {
       company: "Echelon Marketing House",
       location: "",
       period: "Jan 2026 – Mar 2026",
+      type: "Freelance",
+      highlights: [],
+    },
+    {
+      role: "Social Media & IT Ops",
+      company: "Royal Football Club Kerala",
+      location: "",
+      period: "Jan 2026 – Aug 2026",
       type: "Freelance",
       highlights: [],
     },
